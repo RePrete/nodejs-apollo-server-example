@@ -2,7 +2,8 @@ import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import config from 'config';
 import { PostgreSQL, ImageAPI } from './data-sources/index';
-import { typeDefs as Restaurant, resolvers as restaurantResolvers } from './restaurant';
+import { typeDefs as RestaurantTypeDefs, resolvers as restaurantResolvers } from './graph-definitions/restaurant';
+import { typeDefs as baseTypeDefs } from './graph-definitions/base-types';
 
 // These types definitions and resolvers are just an example, you can remove them and move the new types and resolvers elsewhere if you want.
 
@@ -10,7 +11,7 @@ const main = async () => {
   const app = express();
 
   const server = new ApolloServer({
-    typeDefs: [Restaurant],
+    typeDefs: [baseTypeDefs, RestaurantTypeDefs],
     resolvers: restaurantResolvers,
     dataSources: () => ({
       pg: new PostgreSQL({

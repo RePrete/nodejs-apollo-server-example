@@ -91,4 +91,13 @@ Expected response:
 ## Things changed (to @RePrete)
 - Remove db volume: on macOs there are permission issues when mapping postgres data folder with host folder (all docker volumes are owned by root)
 - Removed node_modules volume (I needed to see the typescript definitions)
+- I am assuming that *country_code* must be use to defined if the review is allowed
+- Using a facroty lead to anemic model, but I still prefer to have a factory to create always valid models and models to have an "hard" layer before serialization
 - DA FARE PAGINAZIONE E TEST
+
+## Open points
+- Simplify map-reduce operation on restaurant query using an ORM (objection.js)
+- Port models to ORM models
+- Find a better name and position for dataProviders
+- Implement a more efficient provider (in-memory? redis?)
+- RestaurantRowToModelFactory does not have an interface (static properties are not allowed on interfaces in Typescript https://github.com/microsoft/TypeScript/issues/3841)

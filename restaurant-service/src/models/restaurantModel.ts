@@ -1,8 +1,6 @@
+import { PageInfo } from "../utils/pagination";
 import CountryModel from "./countryModel";
-
-const countryCodesWithAllowedReview = ["FR"];
-
-export default class RestaurantModel {
+export class RestaurantModel {
     public restaurantUuid: string
     public name: string
     public country: CountryModel
@@ -14,24 +12,34 @@ export default class RestaurantModel {
         name,
         country,
         images,
+        allowReviews
     }: {
         restaurantUuid: string,
         name: string,
         country: CountryModel,
         images: string[],
+        allowReviews: boolean
     }) {
         this.restaurantUuid = restaurantUuid;
         this.name = name;
         this.country = country;
         this.images = images;
-        this.allowReviews = countryCodesWithAllowedReview.includes(country.code);
+        this.allowReviews = allowReviews;
     }
-    public resolveImages(provider: { [x: string]: string; }): void {
-        this.images = this.images.reduce(function(result: string[], image) {
-            if (provider[image]) {
-                result.push(provider[image]);
-            }
-            return result;
-        }, [])
+}
+
+export class PaginatedRestaurants {
+    public restaurants: RestaurantModel[]
+    public pagination: PageInfo
+
+    constructor({
+        restaurants,
+        pagination
+    }: {
+        restaurants: RestaurantModel[],
+        pagination: PageInfo
+    }) {
+        this.restaurants = restaurants;
+        this.pagination = pagination;
     }
 }
