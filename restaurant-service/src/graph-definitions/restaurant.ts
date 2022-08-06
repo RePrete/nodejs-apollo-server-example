@@ -33,8 +33,8 @@ export const resolvers = {
     restaurants: async (_parent: any, args: any, { dataSources }: any, _info: any) => {
       const pagination = new InputPagination(args.pagination);
 
-      const { body } = await dataSources.imageAPI.getImages()
-      const images = body.images.reduce((map: Map<string, string>, image: { imageUuid: string; url: string; }) => {
+      const response = await dataSources.imageAPI.getImages()
+      const images = response.reduce((map: Map<string, string>, image: { imageUuid: string; url: string; }) => {
         map.set(image.imageUuid, image.url)
         return map
       }, new Map<string, string>())

@@ -1,6 +1,6 @@
 export interface DataProviderInterface {
     has(x: string): boolean;
-    get(x: string): string;
+    get(x: string): string | undefined;
 }
 
 export class MapProvider implements DataProviderInterface {
@@ -14,11 +14,7 @@ export class MapProvider implements DataProviderInterface {
         return this.map.has(x);
     }
 
-    get(x: string): string {
-        const result = this.map.get(x);
-        if (result === undefined) {
-            throw new Error(`${x} not found`);
-        }
-        return result;
+    get(x: string): string | undefined{
+        return this.map.get(x);
     }
 }

@@ -4,7 +4,9 @@ export class InputPagination {
     offset: number;
 
     constructor(pagination: {
-        page: number, limit: number} = {page: 1, limit: 10}) {
+        page: number,
+        limit: number
+    } = {page: 1, limit: 10}) {
         this.page = pagination.page;
         this.limit = pagination.limit;
         this.offset = (this.page - 1) * this.limit;

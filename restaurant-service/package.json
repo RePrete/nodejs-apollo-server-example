@@ -4,7 +4,7 @@
   "description": "thefork test",
   "main": "dist/server",
   "scripts": {
-    "test": "jest",
+    "test": "jest ./test",
     "migration": "knex migrate:latest",
     "migration:rollback": "knex migrate:rollback --all",
     "seed": "knex seed:run",

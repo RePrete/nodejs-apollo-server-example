@@ -1,5 +1,6 @@
 import { SQLDataSource } from 'datasource-sql';
 import { InputPagination, PageInfo, PaginatedData } from '../utils/pagination';
+
 export default class PostgreSQL extends SQLDataSource {
     // This should only accept a queryBuilder, but I cannot find the definition implementing the clone method
     private async count(query: any) {
