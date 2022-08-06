@@ -41,10 +41,6 @@ export const resolvers = {
       const provider = new MapProvider(images)
 
       const paginatedData: PaginatedData = await dataSources.pg.getAllRestaurants(args.name, args.hasImage, pagination)
-
-      // Promise.all([paginatedData, paginatedData.data]).then((values) => {
-      //   console.log(values)
-      // });
       return new PaginatedRestaurants({
         restaurants: paginatedData.data.map((restaurantRow: any) => {
           return RestaurantRowToModelFactory.create(restaurantRow, provider)

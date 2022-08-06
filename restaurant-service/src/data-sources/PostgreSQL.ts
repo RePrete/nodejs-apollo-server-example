@@ -22,11 +22,16 @@ export default class PostgreSQL extends SQLDataSource {
     }
 
     async getAllRestaurants(name: string, hasImage: boolean, inputPagination: InputPagination): Promise<PaginatedData> {
+        const relevantFields = ["r.restaurant_uuid", "r.name", "c.country_code", "c.locales"]
         const query = this.knex
-            .select("r.restaurant_uuid", "r.name", "c.country_code", "c.locales", "rhi.image_uuid")
+            .select(
+                ...relevantFields, 
+                this.knex.raw('ARRAY_AGG(rhi.image_uuid) as images')
+            )
             .from("restaurant AS r")
             .leftJoin("restaurant_has_image AS rhi", "r.restaurant_uuid", "rhi.restaurant_uuid")
             .leftJoin("country AS c", "r.country_code", "c.country_code")
+            .groupBy(...relevantFields)
             .modify(function () {
                 if (name) {
                     this.where("r.name", name);
@@ -46,16 +51,6 @@ export default class PostgreSQL extends SQLDataSource {
 
         const pageInfo = await this.getPageInfo(query, inputPagination);
         const rows = await this.addPagination(query, inputPagination)
-        const reducedData = rows.reduce((acc: any, row: any) => {
-            if (acc[row.restaurant_uuid]) {
-                acc[row.restaurant_uuid].images.push(row.image_uuid);
-            } else {
-                acc[row.restaurant_uuid] = row;
-                acc[row.restaurant_uuid].images = [row.image_uuid];
-            }
-
-            return acc
-        }, {});
-        return new PaginatedData(Object.values(reducedData), pageInfo);
+        return new PaginatedData(rows, pageInfo);
     }
 }
