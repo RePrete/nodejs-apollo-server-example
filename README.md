@@ -92,8 +92,10 @@ Expected response:
 - Remove db volume: on macOs there are permission issues when mapping postgres data folder with host folder (all docker volumes are owned by root)
 - Removed node_modules volume (I needed to see the typescript definitions)
 - I am assuming that *country_code* must be use to defined if the review is allowed
-- Using a facroty lead to anemic model, but I still prefer to have a factory to create always valid models and models to have an "hard" layer before serialization
-- DA FARE PAGINAZIONE E TEST
+- Using a factory lead to anemic model, but I still prefer to have a factory to create always valid models and models to have an "hard" layer before serialization
+- Added pagination, input and output
+- Added tests
+- Added docker-compose.test.yml
 
 ## Open points
 - Simplify map-reduce operation on restaurant query using an ORM (objection.js)

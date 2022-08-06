@@ -1,0 +1,18 @@
+version: '2.4'
+services:
+  restaurant-service:
+    build:
+      context: restaurant-service
+      args:
+        - NODE_ENV=development
+    command: sh -c "npm i && npm test"
+    volumes:
+      - ./restaurant-service:/code
+    ports:
+      - '3000:3000'
+    networks:
+      - dev
+
+networks:
+  dev:
+    external: true
