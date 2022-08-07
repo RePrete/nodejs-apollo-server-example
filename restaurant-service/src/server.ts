@@ -7,7 +7,7 @@ import { typeDefs as baseTypeDefs } from './graph-definitions/base-types';
 
 // These types definitions and resolvers are just an example, you can remove them and move the new types and resolvers elsewhere if you want.
 
-const main = async () => {
+export const main = async () => {
   const app = express();
 
   const server = new ApolloServer({

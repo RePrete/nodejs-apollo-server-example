@@ -96,6 +96,7 @@ Expected response:
 - Added pagination, input and output
 - Added tests
 - Added docker-compose.test.yml
+- TODO -> cucumber tests
 
 ## Open points
 - Simplify map-reduce operation on restaurant query using an ORM (objection.js)

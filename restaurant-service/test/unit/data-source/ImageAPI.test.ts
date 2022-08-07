@@ -1,4 +1,4 @@
-import {ImageAPI} from "../../src/data-sources";
+import {ImageAPI} from "../../../src/data-sources";
 
 test('getImmages return results from external service, extracting data from body.images', async () => {
     const sut = new ImageAPI('http://image.com');

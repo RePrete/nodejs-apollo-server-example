@@ -1,5 +1,5 @@
-import RestaurantRowToModelFactory from "../../../../src/models/factories/restaurant/restaurantModelFactory";
-import {MapProvider} from "../../../../src/utils/providers";
+import RestaurantRowToModelFactory from "../../../../../src/models/factories/restaurant/restaurantModelFactory";
+import {MapProvider} from "../../../../../src/utils/providers";
 
 test('restaurantModelFactory', () => {
     const row = {

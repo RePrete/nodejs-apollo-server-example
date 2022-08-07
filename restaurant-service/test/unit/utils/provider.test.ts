@@ -1,4 +1,4 @@
-import {MapProvider} from "../../src/utils/providers";
+import {MapProvider} from "../../../src/utils/providers";
 
 test('MapProvider', () => {
     const map = new Map();

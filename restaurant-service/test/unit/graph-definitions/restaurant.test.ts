@@ -1,5 +1,5 @@
-import {resolvers as restaurantResolvers} from '../../src/graph-definitions/restaurant';
-import {InputPagination, PageInfo, PaginatedData} from "../../src/utils/pagination";
+import {resolvers as restaurantResolvers} from '../../../src/graph-definitions/restaurant';
+import {InputPagination, PageInfo, PaginatedData} from "../../../src/utils/pagination";
 
 test('Query restaurants exists', () => {
     expect(restaurantResolvers.Query.restaurants).toBeDefined();

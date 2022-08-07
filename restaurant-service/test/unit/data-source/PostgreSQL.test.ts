@@ -1,5 +1,5 @@
-import {PostgreSQL} from "../../src/data-sources";
-import {InputPagination} from "../../src/utils/pagination";
+import {PostgreSQL} from "../../../src/data-sources";
+import {InputPagination} from "../../../src/utils/pagination";
 
 test.skip('getAllRestaurants queryBuilder', async () => {
     const sut = new PostgreSQL({
