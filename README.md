@@ -89,7 +89,7 @@ Expected response:
 - To provide discussion material for technical interview, you can list any optimizations that you don't have time to implement but consider important
 
 ## Things changed (from @RePrete)
-- Remove db volume: on macOs there are permission issues when mapping postgres data folder with host folder (all docker volumes are owned by root)
+- Removed db volume: on macOs there are permission issues when mapping postgres data folder with host folder (all docker volumes are owned by root)
 - Removed node_modules volume (I needed to see the typescript definitions)
 - I am assuming that **country_code** must be use to defined if the review is allowed
 - Added models to have a "hard" layer before serialization
@@ -103,3 +103,7 @@ Expected response:
 - Port models to ORM models
 - Implement a more efficient provider (in-memory? redis?)
 - RestaurantRowToModelFactory does not have an interface (static properties are not allowed on interfaces in Typescript https://github.com/microsoft/TypeScript/issues/3841)
+- Find a better way to mock knex in PostgreSQL tests
+
+## Run tests unit and cucumber:
+```npm run test```

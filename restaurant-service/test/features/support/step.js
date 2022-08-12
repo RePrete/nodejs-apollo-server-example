@@ -7,11 +7,11 @@ async function doQuery(query, parent) {
   parent.response = response.data.data.restaurants;
 }
 
-When('I execute restaurants with hasImage = true', async () => {
+When('I execute restaurants with hasImage = {string}', async (hasImage) => {
   await doQuery({
     query: `
         query {
-          restaurants(hasImage: true) {
+          restaurants(hasImage: ${hasImage === 'true'}) {
             restaurants {
               images
             }
@@ -32,6 +32,14 @@ Then('I should get only restaurants with image links', async () => {
   }
 });
 
+Then('I should get only restaurants without image links', async () => {
+  const restaurants = this.response.restaurants;
+  assert.ok(restaurants.length > 0);
+  for (const restaurant of restaurants) {
+    assert.strictEqual(restaurant.images.length, 0);
+  }
+});
+
 When('I execute restaurants with name = {string}', async (name) => {
   await doQuery({
     query: `
@@ -46,9 +54,9 @@ When('I execute restaurants with name = {string}', async (name) => {
   }, this);
 });
 
-Then('I should get only one restaurant', async () => {
+Then('I should get exactly {int} restaurant(s)', async (size) => {
   const restaurants = await this.response.restaurants;
-  assert.ok(restaurants.length === 1);
+  assert.strictEqual(restaurants.length, size);
 });
 
 Then('I should get only restaurants with name {string}', async (name) => {
@@ -103,16 +111,6 @@ When('I execute restaurants without pagination arguments', async () => {
   }, this);
 });
 
-Then('I should get 10 restaurants', async () => {
-  const restaurants = await this.response.restaurants;
-  assert.ok(restaurants.length === 10);
-});
-
-Then('I should get the first page of restaurants', async () => {
-  const pagination = await this.response.pagination;
-  assert.ok(pagination.currentPage === 1);
-});
-
 When('I execute restaurants with page size = {int} and page = {int}', async (size, page) => {
   await doQuery({
     query: `
@@ -131,12 +129,7 @@ When('I execute restaurants with page size = {int} and page = {int}', async (siz
   }, this);
 });
 
-Then('I should get 5 restaurants', async () => {
-  const restaurants = await this.response.restaurants;
-  assert.ok(restaurants.length === 5);
-});
-
-Then('I should get the second page of restaurants', async () => {
+Then('I should get the page {int} of restaurants', async (page) => {
   const pagination = await this.response.pagination;
-  assert.ok(pagination.currentPage === 2);
+  assert.strictEqual(pagination.currentPage, page);
 });
