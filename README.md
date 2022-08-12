@@ -88,19 +88,18 @@ Expected response:
 - Please produce code with what is for you **production quality standards** as if you'll have to maintain codebase during the next coming years
 - To provide discussion material for technical interview, you can list any optimizations that you don't have time to implement but consider important
 
-## Things changed (to @RePrete)
+## Things changed (from @RePrete)
 - Remove db volume: on macOs there are permission issues when mapping postgres data folder with host folder (all docker volumes are owned by root)
 - Removed node_modules volume (I needed to see the typescript definitions)
-- I am assuming that *country_code* must be use to defined if the review is allowed
-- Using a factory lead to anemic model, but I still prefer to have a factory to create always valid models and models to have an "hard" layer before serialization
+- I am assuming that **country_code** must be use to defined if the review is allowed
+- Added models to have a "hard" layer before serialization
+- Using a factory lead to anemic model in this specific case, but I still prefer to have a factory to create models **always** in a valid state
 - Added pagination, input and output
 - Added tests
-- Added docker-compose.test.yml
-- TODO -> cucumber tests
+- Added cucumber tests
+- Simplified row reducer using ARRAY_AGG on postgres
 
-## Open points
-- Simplify map-reduce operation on restaurant query using an ORM (objection.js)
+## Open points (from @RePrete)
 - Port models to ORM models
-- Find a better name and position for dataProviders
 - Implement a more efficient provider (in-memory? redis?)
 - RestaurantRowToModelFactory does not have an interface (static properties are not allowed on interfaces in Typescript https://github.com/microsoft/TypeScript/issues/3841)

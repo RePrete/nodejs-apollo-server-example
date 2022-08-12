@@ -18,9 +18,9 @@ export class PageInfo {
     pageCount: number;
     currentPage: number;
 
-    constructor(total: number, pageCount: number, currentPage: number) {
-        this.total = total;
-        this.pageCount = pageCount;
+    constructor(totalCount: number, limit: number, currentPage: number) {
+        this.total = totalCount;
+        this.pageCount = Math.ceil(totalCount / limit);
         this.currentPage = currentPage;
     }
 }

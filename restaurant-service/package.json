@@ -4,7 +4,10 @@
   "description": "thefork test",
   "main": "dist/server",
   "scripts": {
-    "test": "jest ./test",
+    "test-unit": "jest ./test/unit",
+    "test-unit-coverage": "jest --coverage ./test/unit",
+    "test-acceptance": "npx cucumber-js",
+    "test": "npm run test-unit && npm run test-acceptance",
     "migration": "knex migrate:latest",
     "migration:rollback": "knex migrate:rollback --all",
     "seed": "knex seed:run",

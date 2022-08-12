@@ -70,6 +70,6 @@ test('Query restaurants returns a PaginatedRestaurants', async () => {
     expect(result.restaurants[1].allowReviews).toEqual(false);
 
     expect(result.pagination.total).toEqual(2);
-    expect(result.pagination.pageCount).toEqual(1);
+    expect(result.pagination.pageCount).toEqual(2);
     expect(result.pagination.currentPage).toEqual(1);
 });

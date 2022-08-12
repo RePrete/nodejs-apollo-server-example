@@ -3,7 +3,7 @@ module.exports = {
   testURL: 'http://localhost/',
   collectCoverage: false,
   coverageDirectory: 'coverage',
-  coverageReporters: ['json'],
+  coverageReporters: ['json', 'html'],
   modulePathIgnorePatterns: ['<rootDir>/.*/__mocks__'],
   testEnvironment: 'node',
   preset: 'ts-jest/presets/js-with-ts',
