@@ -104,6 +104,7 @@ Expected response:
 - Implement a more efficient provider (in-memory? redis?)
 - RestaurantRowToModelFactory does not have an interface (static properties are not allowed on interfaces in Typescript https://github.com/microsoft/TypeScript/issues/3841)
 - Find a better way to mock knex in PostgreSQL tests
+- Improve arror response with union types (poc on branch *poc-union-type-on-error*)
 
 ## Run tests unit and cucumber:
 ```npm run test```
