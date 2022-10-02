@@ -1,4 +1,4 @@
-# TheFork backend test v1.1
+# Apollo-server backend test v1.1
 
 **Please don't communicate this test nor your implementation publicly**
 (even if you're very proud of it)

@@ -1,7 +1,7 @@
 {
-  "name": "thefork",
+  "name": "restaurant",
   "version": "1.0.0",
-  "description": "thefork test",
+  "description": "restaurant test",
   "main": "dist/server",
   "scripts": {
     "test-unit": "jest ./test/unit",

@@ -39,7 +39,7 @@ beforeEach(() => {
             host: 'localhost',
             user: 'postgres',
             password: 'postgres',
-            database: 'thefork'
+            database: 'app'
         }
     });
 
